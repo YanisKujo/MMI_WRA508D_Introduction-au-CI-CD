@@ -12,12 +12,17 @@ class BuggyController extends AbstractController
     public function buggyAction(): Response
     {
         $data = $this->getData();
-
+        $message = $data['nonexistent_key'] ?? 'Je ne bug plus !';
         return $this->render('welcome.html.twig', [
-            'data' => $data['nonexistent_key'], // Bug : accès à une clé inexistante
+            'message' => $message,
         ]);
     }
 
+    /**
+     * Retourne des données sous forme de tableau associatif.
+     *
+     * @return string[] Tableau associatif avec des clés et des valeurs de type string
+     */
     private function getData(): array
     {
         return [
